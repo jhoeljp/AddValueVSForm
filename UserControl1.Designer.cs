@@ -1,4 +1,7 @@
-﻿namespace AddValue
+﻿using System;
+using System.Windows.Forms;
+
+namespace AddValue
 {
 	partial class UserControl1
 	{
@@ -50,8 +53,13 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			Console.WriteLine("AddValue Constructor");
 			//WEB BROWSER EXCEL
 			this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+			//File system dialog
+			this.OpenExcelFileDialog = new System.Windows.Forms.OpenFileDialog();
+
+
 			this.SuspendLayout();
 			// 
 			// webBrowser1
@@ -64,12 +72,14 @@
 			this.webBrowser1.TabIndex = 0;
 			//this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
 			this.webBrowser1.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.OnWebBrowserExcelNavigated);
-			//this.OpenExcelFileDialog.FileName = "\"* Excel files | *.xls\"";
+			this.OpenExcelFileDialog.FileName = "addvalue_excelfile.xlsm";
+			this.OpenExcelFileDialog.Filter = "Excel files(*.xlsm)|*.*";
 
 			// UserControl1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(638, 494);
 			this.Controls.Add(this.webBrowser1);
 			this.Name = "UserControl1";
 			this.Size = new System.Drawing.Size(330, 250);
@@ -77,7 +87,13 @@
 
 		}
 
+		private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+		{
+			throw new NotImplementedException();
+		}
+
 		#endregion
-		//private System.Windows.Forms.WebBrowser WebBrowserExcel;
+		private System.Windows.Forms.WebBrowser webBrowser1;
+		private System.Windows.Forms.OpenFileDialog OpenExcelFileDialog;
 	}
 }
